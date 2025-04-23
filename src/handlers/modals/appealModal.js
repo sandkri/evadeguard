@@ -6,7 +6,8 @@ import {
 } from "discord.js";
 import { reaxionEmbed } from "../../utility/helpers/embed.js";
 import { users } from "../../utility/database/data.js";
-import { readJSON } from "../../utility/helpers/file.js";
+import { getSetting } from "../../utility/serverSettings.js";
+
 
 export default (client) => {
   client.on("interactionCreate", async (interaction) => {
@@ -35,8 +36,8 @@ export default (client) => {
         return await interaction.reply({ embeds: [embed], ephemeral: true });
       }
 
-      const servers = readJSON("servers.json");
-      const channelId = servers?.[serverId]?.set?.appeal?.channel;
+      // Changed: Use the serverSettings utility instead of readJSON
+      const channelId = await getSetting(serverId, "set.appeal.channel");
       const guild = client.guilds.cache.get(serverId);
       const appealChannel = guild?.channels.cache.get(channelId);
 

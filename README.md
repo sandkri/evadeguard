@@ -9,7 +9,7 @@
 [![GitHub commit activity](https://img.shields.io/github/commit-activity/m/sandkri/EvadeGuard?style=flat-square&logo=github)](https://github.com/sandkri/EvadeGuard/commits)
 [![GitHub code size](https://img.shields.io/github/languages/code-size/sandkri/EvadeGuard?style=flat-square&logo=javascript)](https://github.com/sandkri/EvadeGuard)
 [![License](https://img.shields.io/badge/license-MIT-blue?style=flat-square&logo=opensourceinitiative)](LICENSE)
-[![Discord.js](https://img.shields.io/badge/discord.js-v14-blue?style=flat-square&logo=discord)](https://discord.js.org)
+[![Discord.js](https://img.shields.io/badge/discord.js-v14.18.0-blue?style=flat-square&logo=discord)](https://discord.js.org)
 
 **🛡️ Smart moderation for Discord servers that prevents timeout evasion**
 
