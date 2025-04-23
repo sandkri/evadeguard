@@ -1,8 +1,8 @@
 # EvadeGuard Discord Bot
 
-![GitHub last commit](https://img.shields.io/github/last-commit/sandk/EvadeGuard)
-![GitHub commit activity](https://img.shields.io/github/commit-activity/m/sandk/EvadeGuard)
-![GitHub code size](https://img.shields.io/github/languages/code-size/sandk/EvadeGuard)
+![GitHub last commit](https://img.shields.io/github/last-commit/sandkri/EvadeGuard)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/m/sandkri/EvadeGuard)
+![GitHub code size](https://img.shields.io/github/languages/code-size/sandkri/EvadeGuard)
 ![License](https://img.shields.io/badge/license-MIT-blue)
 
 EvadeGuard is a smart moderation Discord bot that prevents timeout evasion by tracking and escalating punishments when users attempt to circumvent server timeouts.
