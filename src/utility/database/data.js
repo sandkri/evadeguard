@@ -145,6 +145,21 @@ export const users = createModel("users", {
   }
 });
 
+export const servers = createModel("servers", {
+  set: {
+    welcome: {
+      channel: null
+    },
+    logs: {
+      channel: null
+    },
+    appeal: {
+      channel: null
+    }
+  }
+});
+
+
 // Migration utilities
 export async function migrateData(migrations = []) {
   let totalMigrated = 0;
@@ -200,6 +215,38 @@ export async function migrateData(migrations = []) {
   console.log(`✅ Migration complete: ${totalMigrated} records updated`);
   return totalMigrated;
 }
+
+
+// Add a migration utility for servers.json
+export async function migrateServersJson() {
+  try {
+    const serversPath = path.join(process.cwd(), 'src', 'data', 'servers.json');
+    if (!fs.existsSync(serversPath)) {
+      console.log('⚠️ servers.json not found, nothing to migrate');
+      return 0;
+    }
+    
+    const data = JSON.parse(fs.readFileSync(serversPath, 'utf8'));
+    let migratedCount = 0;
+    
+    for (const [guildId, guildConfig] of Object.entries(data)) {
+      const serverModel = servers([guildId]);
+      await serverModel.set(guildConfig);
+      migratedCount++;
+    }
+    
+    // Backup the original file
+    const backupPath = path.join(process.cwd(), 'src', 'data', `servers.json.bak.${Date.now()}`);
+    fs.copyFileSync(serversPath, backupPath);
+    console.log(`✅ Backed up servers.json to ${backupPath}`);
+    
+    return migratedCount;
+  } catch (error) {
+    console.error('❌ Error migrating servers.json:', error);
+    throw error;
+  }
+}
+
 
 // Example usage of migration:
 // migrateData([

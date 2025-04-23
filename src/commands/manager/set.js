@@ -1,5 +1,5 @@
 import { PermissionsBitField } from 'discord.js';
-import { writeJSON, readJSON } from '../../utility/helpers/file.js';
+import { updateSetting, getServerConfig } from '../../utility/serverSettings.js';
 import { CommandBuilder } from '../../utility/commandBuilder.js';
 
 export default {
@@ -15,7 +15,6 @@ export default {
     .setDefaultMemberPermissions(PermissionsBitField.Flags.Administrator),
 
   async execute(interaction) {
-    const serverData = readJSON('servers.json') || {};a
     const guildId = interaction.guild.id;
     const subcommand = interaction.options.getSubcommand();
 
@@ -23,18 +22,8 @@ export default {
       try {
         const channel = interaction.options.getChannel('channel');
         
-        serverData[guildId] = {
-          ...serverData[guildId] || {}, 
-          set: {
-            ...(serverData[guildId]?.set || {}), 
-            appeal: {
-              ...(serverData[guildId]?.set?.appeal || {}), 
-              channel: channel.id
-            }
-          }
-        };
-        
-        writeJSON('servers.json', serverData);
+        // Changed: Use updateSetting instead of modifying JSON
+        await updateSetting(guildId, "set.appeal.channel", channel.id);
         return interaction.reply(`✅ Appeal channel set to ${channel}`);
       } catch (error) {
         console.error(`Error setting appeal channel: ${error.message}`);

@@ -64,4 +64,11 @@ client.on('interactionCreate', async (interaction) => {
 
 await loadHandlers(client)
 await loadServices(client)
+
+
+
+
 client.login(process.env.BOT_TOKEN);
+
+
+
